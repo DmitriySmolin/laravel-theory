@@ -29,7 +29,35 @@ Route::get('/', function () {
     return view('home', compact('name', 'res'));
 });
 
-Route::get('/about', function () {
+Route::get('about', function () {
 
     return '<h1>About Page</h1>';
 });
+
+// Route::get('contact', function () {
+
+//     return view('contact');
+// });
+
+// Route::post('send-email', function () {
+//     if(!empty($_POST)) {
+//         dump($_POST);
+//     }
+//     return 'Send email';
+// });
+
+// Позволяет обрабатывать get и post по одному и тому же url
+Route::match (['post', 'get'], 'contact', function () {
+    
+    if(!empty($_POST)) {
+        dump($_POST);
+    }
+
+    return view('contact');
+})->name('contact');
+
+Route::view('test', 'test', ['test' => 'Test data']);
+
+// Route::redirect('about', 'contact');
+// Route::redirect('about', 'contact', 301);
+Route::permanentRedirect('about', 'contact');
