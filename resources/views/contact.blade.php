@@ -11,6 +11,8 @@
     <form action="{{route('contact')}}" method="POST">
         <!-- {{csrf_field()}} -->
         @csrf
+        <!-- {{method_field('PUT')}} -->
+        @method('PUT')
         <input type="text" name="name">
         <input type="email" name="email">
         <button type="submit">Submit</button>
